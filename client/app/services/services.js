@@ -4,16 +4,29 @@ angular.module('shortly.services', [])
   // Your code here
   var data = []
   var getLinks = function () {
-    //ajax request here
     return $http({
       method: 'GET',
       url: '/api/links'
     })
     .then(function(res){
       return res.data
-    })
+    });
   };
+
+  var sendLink = function(link){
+    return $http({
+      method: 'POST',
+      url: '/api/links',
+      data: { url : link }
+    })
+    .then(function(res){
+    return res.data;
+    });
+  };
+
+
   return {
+    sendLink: sendLink,
     data: data,
     getLinks : getLinks
   };
