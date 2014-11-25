@@ -5,14 +5,18 @@ var Link    = require('./linkModel.js'),
 
 module.exports = {
   findUrl: function (req, res, next, code) {
+    console.log('code',code)
     var findLink = Q.nbind(Link.findOne, Link);
     findLink({code: code})
       .then(function (link) {
+        console.log('link', link)
         if (link) {
           req.navLink = link;
           next();
         } else {
-          next(new Error('Link not added yet'));
+          //TODO: Make a nice "link not found" page
+          res.redirect('/#/links');
+          // next(new Error('Link not added yet'));
         }
       })
       .fail(function (error) {

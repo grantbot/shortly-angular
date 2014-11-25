@@ -2,7 +2,8 @@ angular.module('shortly.services', [])
 
 .factory('Links', function ($http) {
   // Your code here
-  var data = []
+  var data = {};
+  data.links =[];
   var getLinks = function () {
     return $http({
       method: 'GET',
@@ -20,7 +21,7 @@ angular.module('shortly.services', [])
       data: { url : link }
     })
     .then(function(res){
-    return res.data;
+      return res.data;
     });
   };
 

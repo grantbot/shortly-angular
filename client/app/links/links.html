@@ -3,6 +3,6 @@
   <!-- ng repeat will all users links -->
   <h3>Full Links</h3>
   <ul>
-    <li ng-repeat='link in data'>{{ link }}</li>
+    <li ng-repeat='link in data.links'>{{ link.title }}: {{link.base_url +'/'+ link.code}}</li>
   </ul>
 </div>
