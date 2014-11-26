@@ -7,20 +7,20 @@
 
   </head>
   <body>
-    <ul>
-      <a href="#/links">Show Links</a>
-      <a href="#/shorten">Submit Shorten Link!</a>
-      <a href="#/signin">Sign In baby!?</a>
-      <a href="#/signup">One of Us!</a>
-      <a href='#' ng-controller='AuthController' ng-click='signout()'>Sign Out (Byeeeeeee)</a>
+    <ul class='navigation'>
+      <li><a ui-sref="links">Show Links</a></li>
+      <li><a ui-sref="shorten">Submit Shorten Link!</a></li>
+      <li><a ui-sref="signin">Sign In baby!?</a></li>
+      <li><a ui-sref="signup">One of Us!</a></li>
+      <li><a ng-controller='AuthController' ng-click='signout()'>Sign Out (Byeeeeeee)</a></li>
     </ul>
     <h1>Shortly</h1>
 
-    <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
-    <div ng-view></div>
+    <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
+    <div ui-view></div>
 
     <script src="lib/angular/angular.js"></script>
-    <script src="lib/angular-route/angular-route.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
 
     <script src="app/auth/auth.js"></script>
     <script src="app/links/links.js"></script>

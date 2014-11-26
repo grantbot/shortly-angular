@@ -2,7 +2,8 @@
   <!-- Your html here -->
   <!-- ng repeat will all users links -->
   <h3>Full Links</h3>
+  <input ng-model='search.title'>
   <ul>
-    <li ng-repeat='link in data.links'>{{ link.title }}: {{link.base_url +'/'+ link.code}}</li>
+    <li ng-repeat='link in data.links | filter:search'>{{ link.title }}: <a href='/api/links/{{link.code}}'>{{link.base_url +'/'+ link.code}}</a></li>
   </ul>
 </div>

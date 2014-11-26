@@ -3,34 +3,30 @@ angular.module('shortly', [
   'shortly.links',
   'shortly.shorten',
   'shortly.auth',
-  'ngRoute'
+  'ui.router'
 ])
-.config(function($routeProvider, $httpProvider,$location) {
-  $routeProvider
-    .when('/signin', {
-      templateUrl: 'app/auth/signin.html',
-      controller: 'AuthController',
-      authenticate: false
-    })
-    .when('/signup', {
-      templateUrl: 'app/auth/signup.html',
-      controller: 'AuthController',
-      authenticate: false
-    })
-    .when('/links',{
+.config(function($stateProvider, $httpProvider) {
+    $stateProvider
+     .state('signin', {
+        url : '/signin',
+        templateUrl: 'app/auth/signin.html',
+        controller: 'AuthController',
+     })
+     .state('signup', {
+        templateUrl: 'app/auth/signup.html',
+        controller: 'AuthController',
+        url:'/signup'
+     })
+    .state('links', {
       templateUrl: 'app/links/links.html',
       controller: 'LinksController',
-      authenticate: false
+      url:'/links'
     })
-    .when('/shorten',{
+    .state('shorten', {
       templateUrl: 'app/shorten/shorten.html',
       controller: 'ShortenController',
-      //Denotes whether the page requires authentication
+      url:'/shorten',
       authenticate: true
-    })
-    .otherwise({
-      // console.log($location)
-      redirectTo: '/api/links' + $location.path()
     })
     // Your code here
 
@@ -55,7 +51,7 @@ angular.module('shortly', [
   };
   return attach;
 })
-.run(function ($rootScope, $location, Auth) {
+.run(function ($rootScope, $state, Auth) {
   // here inside the run phase of angular, our services and controllers
   // have just been registered and our app is ready
   // however, we want to make sure the user is authorized
@@ -63,12 +59,12 @@ angular.module('shortly', [
   // when it does change routes, we then look for the token in localstorage
   // and send that token to the server to see if it is a real user or hasn't expired
   // if it's not valid, we then redirect back to signin/signup
-  $rootScope.$on('$routeChangeStart', function (evt, next, current) {
-    // console.log('route?:',next.$$route.authenticate);
-    // console.log('authendticaed?', Auth.isAuth())
+  $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
     //$$route.authenticate refers to the authentication requirement in above router
-    if (next.$$route && next.$$route.authenticate && !Auth.isAuth()) {
-      $location.path('/signin');
+    if (toState && toState.authenticate && !Auth.isAuth()) {
+      //Need to preventDefault to keep from going to unauthorized page before .go is called
+      event.preventDefault();
+      $state.go('signin');
     }
   });
 });
