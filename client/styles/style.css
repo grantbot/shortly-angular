@@ -19,6 +19,7 @@ h1 {
   width: 100%;
   height: 40px;
   background-color: #eee;
+  list-style-type: none;
 }
 
 .navigation ul {
@@ -29,6 +30,7 @@ h1 {
 
 .navigation li {
   float: left;
+  border: 10px;
 }
 
 .navigation li a {

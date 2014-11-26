@@ -4,6 +4,7 @@ angular.module('shortly', [
   'shortly.shorten',
   'shortly.auth',
   'ui.router'
+
 ])
 .config(function($stateProvider, $httpProvider) {
     $stateProvider

@@ -3,29 +3,53 @@
   <head>
     <meta charset="utf-8" />
     <title>Shortly</title>
-    <link rel="stylesheet" type="text/css" href="styles/style.css" />
-
+    <!-- <link rel="stylesheet" type="text/css" href="styles/style.css" /> -->
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.css" />
+    <style>
+   .animate-enter,
+  .animate-leave
+  .animate-enter, .animate-leave {
+  transition: 500ms ease-in all;
+  position: relative;
+  display: block;
+  }
+  .animate-enter.animate-enter-active, .animate-leave {
+  left: 0;
+  }
+  .animate-leave.animate-leave-active, .animate-enter {
+  left: 500px;
+  }
+    </style>
   </head>
+
   <body>
-    <ul class='navigation'>
+    <div class='container-non-responsive'>
+    <div class='row'>
+    <div class='nav navbar-nav'>
+    <ul class='nav nav-pills'>
       <li><a ui-sref="links">Show Links</a></li>
       <li><a ui-sref="shorten">Submit Shorten Link!</a></li>
       <li><a ui-sref="signin">Sign In baby!?</a></li>
       <li><a ui-sref="signup">One of Us!</a></li>
       <li><a ng-controller='AuthController' ng-click='signout()'>Sign Out (Byeeeeeee)</a></li>
     </ul>
-    <h1>Shortly</h1>
+    </div>
+    </div>
+    <!-- <h1>Shortly</h1> -->
 
     <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
     <div ui-view></div>
 
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
-
+    <script src="lib/angular-animate/angular-animate.js"></script>
     <script src="app/auth/auth.js"></script>
     <script src="app/links/links.js"></script>
     <script src="app/shorten/shorten.js"></script>
     <script src="app/services/services.js"></script>
     <script src="app/app.js"></script>
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    </div>
   </body>
 </html>

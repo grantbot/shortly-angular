@@ -1,9 +1,25 @@
-<div id='container' >
+<div class='container'>
   <!-- Your html here -->
   <!-- ng repeat will all users links -->
-  <h3>Full Links</h3>
-  <input ng-model='search.title'>
-  <ul>
-    <li ng-repeat='link in data.links | filter:search'>{{ link.title }}: <a href='/api/links/{{link.code}}'>{{link.base_url +'/'+ link.code}}</a></li>
-  </ul>
+  <div class='row'>
+    <h3 class='col-sm-12 text-center'>Full Links</h3>
+  </div>
+  <div class='row'>
+    <div class='col-sm-6 col-sm-offset-3 input-group'>
+    <form class='form-inline'>
+      <input class='form-control input-lg search-query' ng-model='search.title' placeholder='search me'>
+    </form>
+    </div>
+
+  </div>
+
+  <div class='row'>
+    <div class='col-sm-12'>
+      <ul class='list-group'>
+        <li class='list-group-item' ng-animate="'animate'" ng-repeat='link in data.links | filter:search' >{{ link.title }}: <a href='/api/links/{{link.code}}' >{{link.base_url +'/'+ link.code}}</a>
+        <span class='badge'>{{link.visits}} visits</span>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
